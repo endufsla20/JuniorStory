@@ -14,9 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
-  
+
   @Autowired
   UserService userService;
 
@@ -25,6 +24,6 @@ public class UserController {
     List<User> testList = new ArrayList<>();
     testList = userService.getList();
     model.addAttribute("testlist", testList);
-    return "/user/list";
+    return "list";
   }
 }

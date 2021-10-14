@@ -13,7 +13,7 @@
 	<name>juice</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,6 +61,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<source>8</source>
+					<target>8</target>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
