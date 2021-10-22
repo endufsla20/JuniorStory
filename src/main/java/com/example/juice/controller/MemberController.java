@@ -61,6 +61,7 @@ public class MemberController {
       return "account/loginFail";
     }
   }
+
   @PostMapping("/signup")
   public String signupPost(@ModelAttribute Member member) {
     List<Member> dbMember = memberRepository.findByUserid(member.getUserid());
