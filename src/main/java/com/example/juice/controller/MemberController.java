@@ -26,21 +26,24 @@ public class MemberController {
 
   @GetMapping("/")
   public String home() {
-      return "account/login";
+    return "account/login";
   }
 
   @GetMapping("/login")
   public String login() {
     return "account/login";
   }
+
   @GetMapping("/home")
   public String loginSuccess() {
     return "home";
   }
+
   @GetMapping("/signup")
   public String signup() {
-    return "account/signUp";
+    return "account/signup";
   }
+
   @GetMapping("/logout")
   public String logout() {
     session.invalidate();
