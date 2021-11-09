@@ -68,7 +68,7 @@ form {
 .icon {
   width: 22px;
   height: 22px;
-  background-image: url(../pics/new-sprites.png);
+  /* background-image: url(../pics/new-sprites.png); */
   display: flex;
   margin-right: 450px;
   margin-top: 50px;
@@ -242,27 +242,27 @@ form {
 
 .bookshelf .thumb3,
 .bookshelf-row .thumb3 {
-  background-image: url(../pics/book3.jpg);
+  background-image: url(../images/books/book3.jpg);
   width: 90px;
   height: 115px;
 }
 
 .bookshelf .thumb4,
 .bookshelf-row .thumb4 {
-  background-image: url(../pics/book4.jpg);
+  background-image: url(../images/books/book4.jpg);
   width: 97px;
   height: 125px;
 }
 .bookshelf .thumb5,
 .bookshelf-row .thumb5 {
-  background-image: url(../pics/book5.jpg);
+  background-image: url(../images/books/book5.jpg);
   width: 97px;
   height: 125px;
 }
 
 .bookshelf .thumb6,
 .bookshelf-row .thumb6 {
-  background-image: url(../pics/book6.jpg);
+  background-image: url(../images/books/book6.jpg);
   width: 104px;
   height: 125px;
 }
