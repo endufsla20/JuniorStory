@@ -4,16 +4,17 @@
   <body>
     <p><span th:text="${session.user.username}"></span>님 환영합니다</p>
     <a href="logout"> Logout </a>
+    <a href="index"> 테스트 </a>
     <hr />
     <h1>음성 API 테스트</h1>
 
+    <div th:replace="stt.html"></div>
     <button id="speech" onclick="speech_to_text()">Start STT</button>
     <p id="message">버튼을 누르고 아무말이나 하세요.</p>
 
     <div class="textWrapper">
       <div id="korea" class="textbox"></div>
     </div>
-    <div th:replace="stt.html"></div>
 
     <div class="splash">
       <div class="bookshelf">

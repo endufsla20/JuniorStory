@@ -50,6 +50,11 @@ public class MemberController {
     return "redirect:/";
   }
 
+  @GetMapping("/index")
+  public String index() {
+    return "index";
+  }
+
   @RequestMapping
   @PostMapping("/login")
   public String loginPost(@ModelAttribute Member member, HttpServletResponse response) throws Exception {

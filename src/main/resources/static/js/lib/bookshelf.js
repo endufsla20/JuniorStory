@@ -20,12 +20,7 @@
     scrolling = false,
     sid = Math.round(Math.random() * 100000),
     samples = {
-      "steve-jobs": { path: "samples/steve-jobs/" },
-      html5: { path: "samples/html5/" },
-      docs: { path: "samples/docs/" },
-      magazine1: { path: "samples/magazine1/" },
-      magazine2: { path: "samples/magazine2/" },
-      magazine3: { path: "samples/magazine3/" },
+      threejs: { path: "samples/threejs/" },
     },
     status = {
       unloaded: 0,
