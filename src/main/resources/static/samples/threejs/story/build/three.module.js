@@ -38782,7 +38782,7 @@ class FileLoader extends Loader {
 			}, false );
 
 			if ( this.responseType !== undefined ) request.responseType = this.responseType;
-			if ( this.withCredentials !== undefined ) request.withCredentials = this.withCredentials;
+			if ( this	.withCredentials !== undefined ) request.withCredentials = this.withCredentials;
 
 			if ( request.overrideMimeType ) request.overrideMimeType( this.mimeType !== undefined ? this.mimeType : 'text/plain' );
 

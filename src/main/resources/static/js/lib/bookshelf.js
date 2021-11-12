@@ -195,7 +195,7 @@
             $(".splash").removeClass("show-samples sample-" + smpl);
             thumbnail.css({ visibility: "visible" });
           }
-        }, 1000);
+        }, 550);
       } else {
         $(".splash").removeClass(
           "preview show-samples show-bar sample-" + smpl
@@ -303,10 +303,6 @@
       loadNextTest();
     },
 
-    // This function is here only for one reason
-    // Fixes the bug of slider z-index position resulted
-    // from combining position relative/absolute, z-index and transformations
-
     moveBar: function (yes) {
       if (Modernizr.csstransforms) {
         $("#slider .ui-slider-handle").css({ zIndex: yes ? -1 : 0 });
@@ -332,118 +328,6 @@
       zoomOutButton.css({ display: show ? "" : "none" });
     },
   };
-
-  function setCurrentHash() {
-    var top = $(window).scrollTop();
-
-    if (top === 0) Hash.go(demoHash);
-  }
-
-  function splashHeight() {
-    return $(".splash").hasClass("preview") ? 800 : 700;
-  }
-
-  function scrollTop(top, speed) {
-    scrolling = true;
-
-    $("html,body").animate({ scrollTop: top }, speed, function () {
-      scrolling = false;
-      setCurrentHash();
-    });
-  }
-
-  function setPreview(view) {
-    if (!currentDemo) return;
-
-    var preview = $(_thumbPreview.children(":first")),
-      sample = samples[currentDemo],
-      numPages =
-        view == 1 || view == $("#slider").slider("option", "max") ? 1 : 2;
-
-    if (previewDemo != currentDemo || previewNumPages != numPages) {
-      var width = numPages == 1 ? sample.previewWidth / 2 : sample.previewWidth;
-
-      _thumbPreview.addClass("no-transition").css({
-        width: width + 15,
-        height: sample.previewHeight + 15,
-        top: -sample.previewHeight - 30,
-        left: ($($("#slider").children(":first")).width() - width - 15) / 2,
-      });
-
-      preview.css({
-        backgroundImage: "url(" + sample.previewSrc + ")",
-        width: width,
-        height: sample.previewHeight,
-      });
-
-      previewDemo = currentDemo;
-      previewNumPages = numPages;
-
-      setTimeout(function () {
-        _thumbPreview.removeClass("no-transition");
-      }, 0);
-    }
-
-    preview.css({
-      backgroundPosition: "0px -" + (view - 1) * sample.previewHeight + "px",
-    });
-  }
-
-  function navigation(where) {
-    var sample = samples[currentDemo];
-
-    switch (where) {
-      case "zoom-in":
-        $(".splash").zoom("zoomIn", event);
-
-        break;
-
-      case "table-contents":
-        sample.flipbook.turn("page", sample.tableContents);
-
-        break;
-      case "share-facebook":
-        window.open(
-          "https://www.facebook.com/sharer.php?" +
-            "u=" +
-            encodeURIComponent(sample.shareLink) +
-            "&t=" +
-            encodeURIComponent(sample.shareText)
-        );
-
-        break;
-      case "share-twitter":
-        window.open(
-          "https://twitter.com/intent/tweet?" +
-            "original_referer=" +
-            encodeURIComponent(sample.shareLink) +
-            "&url=" +
-            encodeURIComponent(sample.shareLink) +
-            "&text=" +
-            encodeURIComponent(sample.shareText)
-        );
-
-        break;
-      case "share-pinterest":
-        window.open(
-          "http://pinterest.com/pin/create/button/?url=" +
-            "url=" +
-            encodeURIComponent(sample.shareLink) +
-            "&media=" +
-            encodeURIComponent(sample.shareText)
-        );
-
-        break;
-      case "share-plus":
-        window.open(
-          "https://plusone.google.com/_/+1/confirm?" +
-            "url=" +
-            encodeURIComponent(sample.shareLink)
-        );
-
-        break;
-    }
-  }
 
   // DOMReady
 
@@ -486,69 +370,6 @@
         $(this).removeClass("hover");
       });
 
-    // Share icons
-
-    $(".share .icon")
-      .bind($.mouseEvents.over, function (e) {
-        var className = $.trim(
-          $(this)
-            .attr("class")
-            .replace(/\b([a-z-]*hover|icon)\b/g, "")
-        );
-        $(this).addClass(className + "-hover");
-      })
-      .bind($.mouseEvents.out, function (e) {
-        var className = $.trim(
-          $(this)
-            .attr("class")
-            .replace(/\b([a-z-]*hover|icon)\b/g, "")
-        );
-        $(this).removeClass(className + "-hover");
-      });
-
-    clickElement($(".share .icon"), function (e) {
-      navigation(
-        $.trim(
-          $(this)
-            .attr("class")
-            .replace(/\b([a-z-]*hover|icon)\b/g, "")
-        )
-      );
-    });
-
-    // Slider
-
-    $("#slider").slider({
-      min: 1,
-      max: 100,
-
-      start: function (event, ui) {
-        if (!window._thumbPreview) {
-          _thumbPreview = $("<div />", { class: "thumbnail" }).html(
-            "<div></div>"
-          );
-          setPreview(ui.value);
-          _thumbPreview.appendTo($(ui.handle));
-        } else setPreview(ui.value);
-
-        bookshelf.moveBar(false);
-      },
-
-      slide: function (event, ui) {
-        setPreview(ui.value);
-      },
-
-      stop: function () {
-        if (window._thumbPreview) _thumbPreview.removeClass("show");
-
-        if (currentDemo)
-          samples[currentDemo].flipbook.turn(
-            "page",
-            Math.max(1, $(this).slider("value") * 2 - 2)
-          );
-      },
-    });
-
     // Close button
 
     clickElement($(".quit"), function () {
@@ -566,18 +387,18 @@
 
       if (flipbook.turn("zoom") != 1) return;
 
-      var step = 30,
-        actualPos = $("#slider").slider("value") * step;
+      // var step = 30,
+      //   actualPos = $("#slider").slider("value") * step;
 
       if (scrollX === null) {
         scrollX = actualPos;
         scrollPage = flipbook.turn("page");
       }
 
-      scrollX = Math.min(
-        $("#slider").slider("option", "max") * step,
-        Math.max(0, scrollX + deltaX)
-      );
+      // scrollX = Math.min(
+      //   $("#slider").slider("option", "max") * step,
+      //   Math.max(0, scrollX + deltaX)
+      // );
 
       var actualView = Math.round(scrollX / step),
         page = Math.min(
@@ -746,16 +567,6 @@ function clickElement(element, func) {
   } else {
     element.click(func);
   }
-}
-
-function isIE() {
-  return navigator.userAgent.indexOf("MSIE") != -1;
-}
-
-// Why this?  Chrome has the fault:
-// http://code.google.com/p/chromium/issues/detail?id=128488
-function isChrome() {
-  return navigator.userAgent.indexOf("Chrome") != -1;
 }
 
 function numberOfViews(book) {

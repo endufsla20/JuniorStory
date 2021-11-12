@@ -175,7 +175,7 @@
             }
           }
           setTimeout(function () {
-            // location.href = "/samples/threejs/pages/page6.html";
+            location.href = "/samples/threejs/pages/page6.html";
           }, 2000);
 
           updateDepth(book, page);

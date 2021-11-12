@@ -1,89 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="common/testHead.html"> </head>
-  <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-      <div class="container px-5">
-        <a class="navbar-brand" href="#page-top">JuniorStory</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link"
-                ><span th:text="${session.user.username}"></span>님
-                환영합니다.</a
-              >
-            </li>
-            <li class="nav-item"><a class="nav-link" href="logout">로그아웃</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Header-->
-    <header class="masthead text-center text-white">
-      <!-- <div class="masthead-content">
-        <div class="container px-5">
-          <h1 class="masthead-heading mb-0">One Page Wonder</h1>
-          <h1 class="masthead-heading mb-0">One Page Wonder</h1>
-          <h1 class="masthead-heading mb-0">One Page Wonder</h1>
-        </div>
-      </div> -->
-      <div class="splash">
-        <div class="bookshelf">
-          <div class="shelf">
-            <div class="row-1">
-              <div class="loc">
-                <div><div class="sample thumb1" sample="steve-jobs"></div></div>
-                <div><div class="sample thumb2" sample="html5"></div></div>
-                <div><div class="sample thumb3" sample="docs"></div></div>
-              </div>
-            </div>
-            <div class="row-2">
-              <div class="loc">
-                <div><div class="sample thumb4" sample="magazine1"></div></div>
-                <div><div class="sample thumb5" sample="magazine2"></div></div>
-                <div><div class="sample thumb6" sample="magazine3"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          
-        </div>
-        <!-- Samples-->
-        <div class="samples">
-          <div class="bar">
-            <a class="icon quit"></a>
-          </div>
-          <div id="book-wrapper">
-            <div id="book-zoom"></div>
-          </div>
-          <div id="slider-bar" class="turnjs-slider">
-            <div id="slider"></div>
-          </div>
-        </div>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a href="home" class="logo"
+          ><img src="images/icons/logo.png" alt="" class="img-fluid"
+        /></a>
+        <nav id="navbar" class="navbar">
+          <a href="home"> 홈으로 </a>
+          <a class="nav-link scrollto"
+            ><a th:text="${session.user.username}"></a>&nbsp;님 환영합니다.</a
+          >
+          <a class="nav-link scrollto" href="logout">로그아웃</a>
+        </nav>
+        <!-- .navbar -->
       </div>
     </header>
-    <!-- Footer-->
-    <footer class="py-5 bg-black">
-      <div class="container px-5">
-        <p class="m-0 text-center text-white small">
-          Copyright &copy; JuniorStory 2021
-        </p>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <h1>음성 API 테스트</h1>
+
+    <div th:replace="stt.html"></div>
+    <button id="speech" onclick="speech_to_text()">Start STT</button>
+    <p id="message">버튼을 누르고 아무말이나 하세요.</p>
+
+    <div class="textWrapper">
+      <div id="korea" class="textbox"></div>
+    </div>
+    <!-- End Hero -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="container py-4">
+        <div class="copyright">
+          &copy; Copyright <strong><span>JuniorStory</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
       </div>
     </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
   </body>
 </html>

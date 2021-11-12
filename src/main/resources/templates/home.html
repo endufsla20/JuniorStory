@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="common/homeHead.html"> </head>
+  <head th:replace="common/mainHead.html"> </head>
+
   <body>
-    <p><span th:text="${session.user.username}"></span>님 환영합니다</p>
-    <a href="logout"> Logout </a>
-    <a href="index"> 테스트 </a>
-    <hr />
-    <h1>음성 API 테스트</h1>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a href="home" class="logo"
+          ><img src="images/icons/logo.png" alt="" class="img-fluid"
+        /></a>
+        <nav id="navbar" class="navbar">
+          <a href="test"> STT 테스트 </a>
+          <a class="nav-link scrollto"
+            ><a th:text="${session.user.username}"></a>&nbsp;님 환영합니다.</a
+          >
+          <a class="nav-link scrollto" href="logout">로그아웃</a>
+        </nav>
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
 
-    <div th:replace="stt.html"></div>
-    <button id="speech" onclick="speech_to_text()">Start STT</button>
-    <p id="message">버튼을 누르고 아무말이나 하세요.</p>
-
-    <div class="textWrapper">
-      <div id="korea" class="textbox"></div>
-    </div>
-
+    <!-- ======= Hero Section ======= -->
+    <!-- <section id="hero"> -->
     <div class="splash">
       <div class="bookshelf">
         <div class="shelf">
           <div class="row-1">
             <div class="loc">
-              <div><div class="sample thumb1" sample="steve-jobs"></div></div>
+              <div>
+                <div class="sample thumb1" sample="threejs"></div>
+              </div>
               <div><div class="sample thumb2" sample="html5"></div></div>
               <div><div class="sample thumb3" sample="docs"></div></div>
             </div>
           </div>
           <div class="row-2">
             <div class="loc">
-              <div><div class="sample thumb4" sample="magazine1"></div></div>
-              <div><div class="sample thumb5" sample="magazine2"></div></div>
-              <div><div class="sample thumb6" sample="magazine3"></div></div>
+              <div>
+                <div class="sample thumb4" sample="magazine1"></div>
+              </div>
+              <div>
+                <div class="sample thumb5" sample="magazine2"></div>
+              </div>
+              <div>
+                <div class="sample thumb6" sample="magazine3"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -44,10 +59,29 @@
         <div id="book-wrapper">
           <div id="book-zoom"></div>
         </div>
-        <div id="slider-bar" class="turnjs-slider">
-          <div id="slider"></div>
-        </div>
       </div>
     </div>
+    <!-- </section> -->
+    <!-- End Hero -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="container py-4">
+        <div class="copyright">
+          &copy; Copyright <strong><span>JuniorStory</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
   </body>
 </html>
