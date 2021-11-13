@@ -1,178 +1,167 @@
-body, ul, table, form{
-	margin:0;
-	padding:0;
-	overflow:hidden;
+body,
+ul,
+table,
+form {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-.animated{
-	-webkit-transition:margin-left 0.2s ease-in-out;
-	-moz-transition:margin-left 0.2s ease-in-out;
-	-o-transition:margin-left 0.2s ease-in-out;
-	-ms-transition:margin-left 0.2s ease-in-out;
-	transition:margin-left 0.2s ease-in-out;
+.animated {
+  -webkit-transition: margin-left 0.2s ease-in-out;
+  -moz-transition: margin-left 0.2s ease-in-out;
+  -o-transition: margin-left 0.2s ease-in-out;
+  -ms-transition: margin-left 0.2s ease-in-out;
+  transition: margin-left 0.2s ease-in-out;
 }
 
-#canvas{
-	width: 960px;
-	height: 600px;
-	margin: 100px auto;
+#canvas {
+  width: 960px;
+  height: 600px;
+  margin: 100px auto;
 }
 
-#book-zoom{
-	-webkit-transition: -webkit-transform 1s;
-	-moz-transition: -moz-transform 1s;
-	-ms-transition: -ms-transform 1s;
-	-o-transition: -o-transform 1s;
-	transition: transform 1s;
+#book-zoom {
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -ms-transition: -ms-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
 }
 
-.threejs-book{
-	width:960px;
-	height:600px;
+.threejs-book {
+  width: 960px;
+  height: 600px;
 }
-.animated{
-	-webkit-transition:margin-left 0.2s ease-in-out;
-	-moz-transition:margin-left 0.2s ease-in-out;
-	-o-transition:margin-left 0.2s ease-in-out;
-	-ms-transition:margin-left 0.2s ease-in-out;
-	transition:margin-left 0.2s ease-in-out;
-}
-
-.threejs-book .shadow{
-	-webkit-transition: -webkit-box-shadow 0.5s;
-	-moz-transition: -moz-box-shadow 0.5s;
-	-o-transition: -webkit-box-shadow 0.5s;
-	-ms-transition: -ms-box-shadow 0.5s;
-
-	-webkit-box-shadow:0 0 10px #999;
-	-moz-box-shadow:0 0 10px #999;
-	-ms-box-shadow:0 0 10px #999;
-	-o-box-shadow:0 0 10px #999;
-	box-shadow:0 0 10px #999;
+.animated {
+  -webkit-transition: margin-left 0.2s ease-in-out;
+  -moz-transition: margin-left 0.2s ease-in-out;
+  -o-transition: margin-left 0.2s ease-in-out;
+  -ms-transition: margin-left 0.2s ease-in-out;
+  transition: margin-left 0.2s ease-in-out;
 }
 
-.threejs-book .page{
-	-webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
-	-moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
-	-ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
-	-o-box-shadow:0 0 20px rgba(0,0,0,0.2);
-	box-shadow:0 0 20px rgba(0,0,0,0.2);
+.threejs-book .shadow {
+  -webkit-transition: -webkit-box-shadow 0.5s;
+  -moz-transition: -moz-box-shadow 0.5s;
+  -o-transition: -webkit-box-shadow 0.5s;
+  -ms-transition: -ms-box-shadow 0.5s;
+
+  -webkit-box-shadow: 0 0 10px #999;
+  -moz-box-shadow: 0 0 10px #999;
+  -ms-box-shadow: 0 0 10px #999;
+  -o-box-shadow: 0 0 10px #999;
+  box-shadow: 0 0 10px #999;
 }
 
-.zoom-pic{
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	background-color:rgba(0,0,0,0.2);
-	z-index:999;
+.threejs-book .page {
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-.zoom-pic img{
-	-webkit-box-shadow:0 0 20px #999;
-	-moz-box-shadow:0 0 20px #999;
-	-o-box-shadow:0 0 20px #999;
-	-ms-box-shadow:0 0 20px #999;
-	box-shadow:0 0 20px #999;
+.zoom-pic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 999;
 }
 
-.threejs-book .p1,
-.threejs-book .p2,
+.zoom-pic img {
+  -webkit-box-shadow: 0 0 20px #999;
+  -moz-box-shadow: 0 0 20px #999;
+  -o-box-shadow: 0 0 20px #999;
+  -ms-box-shadow: 0 0 20px #999;
+  box-shadow: 0 0 20px #999;
+}
+
+.threejs-book .p2 {
+  /* background-position: 0 0; */
+  background-image: url(../pics/book-covers1.jpg) !important;
+  background-size: cover;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
 .threejs-book .p3 {
-	background-color:white;
-	background-image:url(../pics/book-covers.jpg) !important;
+  /* background-position: 0 0; */
+  background-image: url(../pics/book-covers2.jpg) !important;
+  background-size: cover;
 }
 
-.threejs-book .p1{
-	background-position:0 0;
+.threejs-book .p1 .side {
+  width: 5px;
+  height: 600px;
+  position: absolute;
+  top: 0;
+  left: 475px;
+
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #bbb),
+    color-stop(0.5, #ddd),
+    color-stop(1, #bbb)
+  );
+  background-image: -webkit-linear-gradient(left, #bbb, #ddd, #bbb);
+  background-image: -moz-linear-gradient(left, #bbb, #ddd, #bbb);
+  background-image: -ms-linear-gradient(left, #bbb, #ddd, #bbb);
+  background-image: -o-linear-gradient(left, #bbb, #ddd, #bbb);
+  background-image: linear-gradient(left, #bbb, #ddd, #bbb);
+
+  -webkit-transform: rotateY(-90deg);
+  -moz-transform: rotateY(-90deg);
+  -o-transform: rotateY(-90deg);
+  -ms-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transform-origin: top right;
+  z-index: 100000;
 }
 
-.threejs-book .p1 .side{
-	width:5px;
-	height:600px;
-	position:absolute;
-	top:0;
-	left:475px;
-
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #bbb), color-stop(0.5,  #ddd), color-stop(1,  #bbb));
-	background-image:-webkit-linear-gradient(left, #bbb, #ddd, #bbb);
-	background-image:-moz-linear-gradient(left, #bbb, #ddd, #bbb);
-	background-image:-ms-linear-gradient(left, #bbb, #ddd, #bbb);
-	background-image:-o-linear-gradient(left, #bbb, #ddd, #bbb);
-	background-image:linear-gradient(left, #bbb, #ddd, #bbb);
-	
-	-webkit-transform:rotateY(-90deg);
-	-moz-transform:rotateY(-90deg);
-	-o-transform:rotateY(-90deg);
-	-ms-transform:rotateY(-90deg);
-	transform:rotateY(-90deg);
-
-	-webkit-transform-origin:top right;
-	-moz-transform-origin:top right;
-	-o-transform-origin:top right;
-	-ms-transform-origin:top right;
-	transform-origin:top right;
-	z-index:100000;
-
+.threejs-book-transform div[page="1"] > div,
+.threejs-book-transform div[page="2"] > div {
+  overflow: visible !important;
 }
 
-.threejs-book-transform div[page="1"] > div, .threejs-book-transform div[page="2"] > div{
-	overflow:visible !important;
+.threejs-book .depth {
+  background-image: url(../pics/pages-depth.png);
+  position: absolute;
+  top: 7px;
+  width: 16px;
+  height: 590px;
 }
 
-.threejs-book .depth{
-	background-image:url(../pics/pages-depth.png);
-	position:absolute;
-	top:7px;
-	width:16px;
-	height:590px;
+.threejs-book .front-side .depth {
+  left: 4px;
+  background-position: 0 0;
 }
 
-.threejs-book .front-side .depth{
-	left:4px;
-	background-position:0 0;
+.threejs-book .back-side .depth {
+  right: 4px;
+  background-position: right 0;
 }
 
-.threejs-book .back-side .depth{
-	right:4px;
-	background-position:right 0;
+.threejs-book .page-wrapper {
+  -webkit-perspective: 2000px;
+  -moz-perspective: 2000px;
+  -ms-perspective: 2000px;
+  perspective: 2000px;
 }
 
-
-.threejs-book .p2{
-	background-position:-480px 0 !important;
+.threejs-book .own-size {
+  width: 460px;
+  height: 582px;
+  background-color: white;
+  overflow: hidden;
 }
-
-.threejs-book .p3{
-	background-position:-1920px 0 !important;
-}
-
-.threejs-book .page-wrapper{
-	-webkit-perspective:2000px;
-	-moz-perspective: 2000px;
-	-ms-perspective: 2000px;
-	perspective: 2000px;
-}
-
-.threejs-book .own-size{
-	width:460px;
-	height:582px;
-	background-color:white;
-	overflow:hidden;
-}
-
-.ie8 .threejs-book .even,
-.ie9 .threejs-book .even{
-	background-image:url(../pics/gradient-page-left.jpg);
-	background-position:right top;
-	background-repeat:repeat-y;
-}
-
-.ie8 .threejs-book .odd,
-.ie9 .threejs-book .odd{
-	background-image:url(../pics/gradient-page-right.jpg);
-	background-position:left top;
-	background-repeat:repeat-y;
-}
-

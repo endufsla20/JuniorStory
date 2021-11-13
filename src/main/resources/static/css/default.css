@@ -211,7 +211,6 @@ form {
 .bookshelf-row .hover,
 .bookshelf .shelf .loading {
   z-index: 2;
-  cursor: none;
   background-color: white;
   -webkit-transform: scale3d(1.1, 1.1, 1) translate3d(0, -5px, 0);
   -moz-transform: scale3d(1.1, 1.1, 1) translate3d(0, -5px, 0);
@@ -314,11 +313,10 @@ form {
 }
 
 #book-wrapper {
-  width: 960px;
-  height: 600px;
   display: flex;
-  margin-left: 450px;
-  margin-top: 50px;
+  justify-content: center;
+  width: 100vw;
+  margin-top: 170px;
 }
 
 header {

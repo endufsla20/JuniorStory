@@ -50,9 +50,9 @@ public class MemberController {
     return "redirect:/";
   }
 
-  @GetMapping("/test")
-  public String test() {
-    return "test";
+  @GetMapping("/story")
+  public String story() {
+    return "story";
   }
 
   @RequestMapping
