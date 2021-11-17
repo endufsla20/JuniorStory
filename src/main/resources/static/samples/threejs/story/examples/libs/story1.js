@@ -526,6 +526,7 @@ class App {
       this._scene.add(mesh);
     });
   }
+  
   _setupText() {
     const loader = new FontLoader();
     loader.load("samples/threejs/story/data/Do_Regular.json", (font) => {
@@ -1174,10 +1175,6 @@ class App {
               this.stt = false;
               this.page = 16;
             }
-            // else {
-            //    console.log(msg);
-            //    alert("다시 말해주세요");
-            // }
           };
           this.stt = false;
         }
