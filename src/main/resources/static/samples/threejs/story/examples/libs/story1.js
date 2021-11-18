@@ -58,7 +58,7 @@ class App {
     this._scene16 = scene16;
     this._scene17 = scene17;
 
-    this.page = 12.5;
+    this.page = 1;
     this.playing = true;
     this.finish = false;
     this.finish5 = false;
