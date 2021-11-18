@@ -20,15 +20,14 @@ class STT {
     }
 
     recognition.lang = "ko-KR";
-    recognition.interimResults = false; //중간 결과가 반환되어야 하는지(true) 아니면 반환 되지 않아야 하는지 (false) 제어
+    recognition.interimResults = false; //중간 결과를 반환 할 것인지 제어
     recognition.maxAlternatives = 10; // 결과당 제공되는 최대 s 수를 설정
-    //recognition.continuous = true;
 
     recognition.start(); //stt 시작
     isRecognizing = true;
 
     recognition.onspeechstart = function () {
-      // console.log("음성인식이 시작 되었습니다. 이제 마이크에 무슨 말이든 하세요.");
+      //소리가 감지될 떄 음성 인식 시작
     };
 
     recognition.onspeechend = function () {
@@ -38,21 +37,9 @@ class STT {
     };
 
     recognition.onresult = function (event) {
-      // console.log("You said: ", event.results[0][0].transcript);
+      // 결과 값을 story에 전달
       this._parent.call(event.results[0][0].transcript);
     }.bind(this);
-
-    // recognition.onresult = (event) => {
-    // 	// console.log("You said: ", event.results[0][0].transcript);
-    // 	this._parent.call(event.results[0][0].transcript);
-
-    // 	// 결과를 출력
-    // 	var resText = event.results[0][0].transcript;
-
-    // 	if (resText == "체크포인트") {
-    // 		return (this.page = 3);
-    // 	}
-    // };
 
     recognition.addEventListener("end", recognition.start);
   }
