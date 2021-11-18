@@ -61,6 +61,9 @@ class App {
     this.page = 1;
     this.playing = true;
     this.finish = false;
+    this.finish2 = false;
+    this.finish3 = false;
+    this.finish4 = false;
     this.finish5 = false;
     this.finish6 = false;
     this.finish7 = false;
@@ -792,7 +795,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Talk.fbx", (talk10) => {
-      talk10.position.set(-4500, 300, -8000);
+      talk10.position.set(-1500, 300, -8000);
       talk10.rotation.y = Math.PI;
       this._scene10.add(talk10);
       this.mixer_talk10 = new THREE.AnimationMixer(talk10);
@@ -1289,42 +1292,52 @@ class App {
   }
 
   scene2(delta) {
-    if (this._camera.position == (-9000, 1500, -4500)) {
-      pass;
-    } else {
+    if (!this.finish2) {
+      this.playing = true;
+      this.finish2 = true;
       if (this.playing) {
         this._s2_Audio();
         this.playing = false;
       }
-      this._camera.position.set(-9000, 1500, -4500);
-      this._mixer_Crawling.update(delta);
-      this._mixer_Crawling._root.position.z += 20;
+      setTimeout(() => {
+        this.page = 3;
+      }, 6000);
     }
+    this._camera.position.set(-9000, 1500, -4500);
+    this._mixer_Crawling.update(delta);
+    this._mixer_Crawling._root.position.z += 20;
     if (this._mixer_Crawling._root.position.z >= -350) {
       this._mixer_Crawling._root.position.z = 800000;
-      this.playing = true;
-      this.page = 3;
     }
   }
 
   scene3(delta) {
-    if (this.playing) {
-      this._s3_Audio();
-      this.playing = false;
+    if (!this.finish3) {
+      this.playing = true;
+      this.finish3 = true;
+      if (this.playing) {
+        this._s3_Audio();
+        this.playing = false;
+      }
+      setTimeout(() => {
+        this.page = 4;
+      }, 6000);
     }
     this._mixer_jump.update(delta);
     this._mixer_jump._root.position.z += 30;
     if (this._mixer_jump._root.position.z > 2000) {
       this._mixer_jump._root.position.z = 800000;
-      this.playing = true;
-      this.page = 4;
     }
   }
 
   scene4(delta) {
-    if (this.playing) {
-      this._s4_Audio();
-      this.playing = false;
+    if (!this.finish4) {
+      this.playing = true;
+      this.finish4 = true;
+      if (this.playing) {
+        this._s4_Audio();
+        this.playing = false;
+      }
       setTimeout(() => {
         this.page = 5;
       }, 6000);
