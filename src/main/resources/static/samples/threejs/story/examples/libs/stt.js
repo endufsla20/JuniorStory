@@ -21,7 +21,8 @@ class STT {
 
     recognition.lang = "ko-KR";
     recognition.interimResults = false; //중간 결과를 반환 할 것인지 제어
-    recognition.maxAlternatives = 10; // 결과당 제공되는 최대 s 수를 설정
+    recognition.maxAlternatives = 10; // 발음 교정 메서드? 
+    //숫자가 작을수록 발음대로 적고, 크면 문장의 적합도에 따라 알맞은 단어로 대체
 
     recognition.start(); //stt 시작
     isRecognizing = true;
