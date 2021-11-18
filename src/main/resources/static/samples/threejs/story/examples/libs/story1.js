@@ -20,7 +20,6 @@ class App {
 
     this._renderer = renderer;
 
-    const test = new THREE.Scene();
     const scene = new THREE.Scene();
     const scene2 = new THREE.Scene();
     const scene3 = new THREE.Scene();
@@ -40,7 +39,6 @@ class App {
     const scene16 = new THREE.Scene();
     const scene17 = new THREE.Scene();
 
-    this._test = test;
     this._scene = scene;
     this._scene2 = scene2;
     this._scene3 = scene3;
@@ -86,12 +84,9 @@ class App {
     this._setupTitle();
     this._setupText();
     this._setupRabbit();
-    this._setupTree();
     this._setupTurtle();
-    this._setupFloor();
     this._setupControls();
-    this._setupFloor();
-    this._setupFence();
+    this._setupBg();
 
     window.onresize = this.resize.bind(this);
     this.resize();
@@ -102,20 +97,9 @@ class App {
   _setupControls() {
     this._controls = new OrbitControls(this._camera, this._divContainer);
     this._controls.update();
-    this._controlstest = new OrbitControls(
-      this._cameratest,
-      this._divContainer
-    );
-    this._controlstest.update();
   }
 
   _setupCamera() {
-    const cameratest = new THREE.PerspectiveCamera(
-      80,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      100000
-    );
     const camera = new THREE.PerspectiveCamera(
       80,
       window.innerWidth / window.innerHeight,
@@ -171,20 +155,18 @@ class App {
       100000
     );
 
-    cameratest.position.set(-4000, 1500, -4500);
-    camera.position.set(-9000, 4000, 3);
-    camera3.position.set(1800, 1300, 3000);
-    camera4.position.set(1000, 1300, -4500);
-    camera5.position.set(700, 2200, 5500);
-    camera6.position.set(-1000, 1300, -3000);
-    camera7.position.set(1800, 1300, -3000);
-    camera10.position.set(1800, 1300, 6700);
-    camera12_5.position.set(-2000, 1850, 4500);
+    camera.position.set(-14000, 4000, 3);
+    camera3.position.set(-3200, 1300, 3000);
+    camera4.position.set(-4000, 1300, -4500);
+    camera5.position.set(-4300, 2200, 5500);
+    camera6.position.set(-6000, 1300, -3000);
+    camera7.position.set(-3200, 1300, -3000);
+    camera10.position.set(-3200, 1300, 6700);
+    camera12_5.position.set(-7000, 1850, 4500);
     camera12_5.rotation.set(0, Math.PI / -2, 0);
-    camera16.position.set(-2000, 1850, 4500);
+    camera16.position.set(-7000, 1850, 4500);
     camera16.rotation.set(0, Math.PI / -2, 0);
 
-    this._cameratest = cameratest;
     this._camera = camera;
     this._camera3 = camera3;
     this._camera4 = camera4;
@@ -198,7 +180,6 @@ class App {
 
   _setupLight() {
     const color = 0xffffff;
-    const lighttest = new THREE.AmbientLight(color);
     const light = new THREE.AmbientLight(color);
     const light2 = new THREE.AmbientLight(color);
     const light3 = new THREE.AmbientLight(color);
@@ -218,7 +199,6 @@ class App {
     const light16 = new THREE.AmbientLight(color);
     const light17 = new THREE.AmbientLight(color);
 
-    this._test.add(lighttest);
     this._scene.add(light);
     this._scene2.add(light2);
     this._scene3.add(light3);
@@ -614,17 +594,15 @@ class App {
         }
       );
 
-      // geometry.center();
-
       const material = new THREE.MeshStandardMaterial({
-        color: "#FF00CC",
+        color: "blue",
         roughness: 0.3,
         metalness: 0.7,
       });
 
       const mesh = new THREE.Mesh(geometry, material);
 
-      mesh.position.set(2000, 1850, -1500);
+      mesh.position.set(-3000, 850, -250);
       mesh.rotation.y = Math.PI / -4;
 
       this._scene12_5.add(mesh);
@@ -646,71 +624,26 @@ class App {
         }
       );
 
-      // geometry.center();
-
       const material = new THREE.MeshStandardMaterial({
-        color: "#FF00CC",
+        color: "blue",
         roughness: 0.3,
         metalness: 0.7,
       });
 
       const mesh = new THREE.Mesh(geometry, material);
 
-      mesh.position.set(4000, 1850, 5500);
+      mesh.position.set(-1000, 850, 5750);
       mesh.rotation.y = Math.PI / -1.4;
 
       this._scene12_5.add(mesh);
     });
   }
 
-  _setupFloor() {
-    const ground_geometry = new THREE.BoxBufferGeometry(10000, 500, 20000);
-    const loader = new THREE.TextureLoader();
-    const ground_meterial = new THREE.MeshBasicMaterial({
-      map: loader.load("samples/threejs/story/images/grass1.jpg"),
-    });
-    const ground2 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground3 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground4 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground5 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground6 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground7 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground8 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground9 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground10 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground11 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground12 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground12_5 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground13 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground14 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground15 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground16 = new THREE.Mesh(ground_geometry, ground_meterial);
-    const ground17 = new THREE.Mesh(ground_geometry, ground_meterial);
-
-    this._scene2.add(ground2);
-    this._scene3.add(ground3);
-    this._scene4.add(ground4);
-    this._scene5.add(ground5);
-    this._scene6.add(ground6);
-    this._scene7.add(ground7);
-    this._scene8.add(ground8);
-    this._scene9.add(ground9);
-    this._scene10.add(ground10);
-    this._scene11.add(ground11);
-    this._scene12.add(ground12);
-    this._scene12_5.add(ground12_5);
-    this._scene13.add(ground13);
-    this._scene14.add(ground14);
-    this._scene15.add(ground15);
-    this._scene16.add(ground16);
-    this._scene17.add(ground17);
-  }
-
   _setupRabbit() {
     this._clock = new THREE.Clock();
     const loader = new FBXLoader();
     loader.load("samples/threejs/story/data/rabbit/Jump.fbx", (jump) => {
-      jump.position.set(1500, 300, -8000);
+      jump.position.set(-4500, 300, -8000);
       this._scene3.add(jump);
       this._mixer_jump = new THREE.AnimationMixer(jump);
       const rb_jump_action = this._mixer_jump.clipAction(jump.animations[0]);
@@ -718,7 +651,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Jump.fbx", (jump2) => {
-      jump2.position.set(1500, 300, -8000);
+      jump2.position.set(-4500, 300, -8000);
       this._scene4.add(jump2);
       this.mixer_jump2 = new THREE.AnimationMixer(jump2);
       const rb_jump_action2 = this.mixer_jump2.clipAction(jump2.animations[0]);
@@ -726,7 +659,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Jump.fbx", (jump3) => {
-      jump3.position.set(1500, 300, -8000);
+      jump3.position.set(-4500, 300, -8000);
       this._scene8.add(jump3);
       this._mixer_jump3 = new THREE.AnimationMixer(jump3);
       const rb_jump_action3 = this._mixer_jump3.clipAction(jump3.animations[0]);
@@ -734,7 +667,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Jump.fbx", (jump9) => {
-      jump9.position.set(1500, 300, -3000);
+      jump9.position.set(-4500, 300, -3000);
       this._scene9.add(jump9);
       this._mixer_jump9 = new THREE.AnimationMixer(jump9);
       const rb_jump_action9 = this._mixer_jump9.clipAction(jump9.animations[0]);
@@ -742,7 +675,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Jump.fbx", (jump15) => {
-      jump15.position.set(1500, 300, 5000);
+      jump15.position.set(-4500, 300, 5000);
       this._scene15.add(jump15);
       this._mixer_jump15 = new THREE.AnimationMixer(jump15);
       const rb_jump_action15 = this._mixer_jump15.clipAction(
@@ -841,7 +774,7 @@ class App {
     );
 
     loader.load("samples/threejs/story/data/rabbit/laugh.fbx", (rb_victory) => {
-      rb_victory.position.set(1500, 300, 380000);
+      rb_victory.position.set(-4500, 300, 380000);
       this._scene15.add(rb_victory);
       this._mixer_rb_victory = new THREE.AnimationMixer(rb_victory);
       const rb_victory_action = this._mixer_rb_victory.clipAction(
@@ -851,7 +784,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Talk.fbx", (talk) => {
-      talk.position.set(1500, 300, -8000);
+      talk.position.set(-4500, 300, -8000);
       this._scene7.add(talk);
       this.mixer_talk = new THREE.AnimationMixer(talk);
       const rb_talk_action = this.mixer_talk.clipAction(talk.animations[0]);
@@ -859,7 +792,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Talk.fbx", (talk10) => {
-      talk10.position.set(1500, 300, -8000);
+      talk10.position.set(-4500, 300, -8000);
       talk10.rotation.y = Math.PI;
       this._scene10.add(talk10);
       this.mixer_talk10 = new THREE.AnimationMixer(talk10);
@@ -870,7 +803,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/rabbit/Talk.fbx", (talk14) => {
-      talk14.position.set(1500, 300, 5000);
+      talk14.position.set(-1500, 300, 5000);
       talk14.rotation.y = Math.PI;
       this._scene14.add(talk14);
       this.mixer_talk14 = new THREE.AnimationMixer(talk14);
@@ -885,7 +818,7 @@ class App {
     this._clock = new THREE.Clock();
     const loader = new FBXLoader();
     loader.load("samples/threejs/story/data/turtle/Crawling.fbx", (turtle) => {
-      turtle.position.set(-1500, 650, -8000);
+      turtle.position.set(-6500, 650, -8000);
       turtle.scale.set(5, 5, 5);
       this._scene2.add(turtle);
       this._mixer_Crawling = new THREE.AnimationMixer(turtle);
@@ -896,7 +829,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/turtle/Crawling.fbx", (turtle2) => {
-      turtle2.position.set(-1500, 650, -8000);
+      turtle2.position.set(-6500, 650, -8000);
       turtle2.scale.set(5, 5, 5);
       this._scene8.add(turtle2);
       this._mixer_Crawling2 = new THREE.AnimationMixer(turtle2);
@@ -907,7 +840,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/turtle/Crawling.fbx", (turtle9) => {
-      turtle9.position.set(-1500, 650, -6000);
+      turtle9.position.set(-6500, 650, -6000);
       turtle9.scale.set(5, 5, 5);
       this._scene9.add(turtle9);
       this._mixer_Crawling9 = new THREE.AnimationMixer(turtle9);
@@ -920,7 +853,7 @@ class App {
     loader.load(
       "samples/threejs/story/data/turtle/Crawling.fbx",
       (turtle10) => {
-        turtle10.position.set(-1500, 650, -6000);
+        turtle10.position.set(-6500, 650, -6000);
         turtle10.scale.set(5, 5, 5);
         this._scene10.add(turtle10);
         this._mixer_Crawling10 = new THREE.AnimationMixer(turtle10);
@@ -934,7 +867,7 @@ class App {
     loader.load(
       "samples/threejs/story/data/turtle/Crawling.fbx",
       (turtle12) => {
-        turtle12.position.set(-500, 650, 2000);
+        turtle12.position.set(-5500, 650, 2000);
         turtle12.scale.set(5, 5, 5);
         this._scene12.add(turtle12);
         this._mixer_Crawling12 = new THREE.AnimationMixer(turtle12);
@@ -948,7 +881,7 @@ class App {
     loader.load(
       "samples/threejs/story/data/turtle/Crawling.fbx",
       (turtle12_5) => {
-        turtle12_5.position.set(0, 650, 3500);
+        turtle12_5.position.set(-5000, 650, 3500);
         turtle12_5.rotation.set(0, Math.PI / 2, 0);
         turtle12_5.scale.set(5, 5, 5);
         this._scene12_5.add(turtle12_5);
@@ -964,7 +897,7 @@ class App {
     loader.load(
       "samples/threejs/story/data/turtle/Crawling.fbx",
       (turtle16) => {
-        turtle16.position.set(500, 650, 3500);
+        turtle16.position.set(-4500, 650, 3500);
         turtle16.scale.set(5, 5, 5);
         this._scene16.add(turtle16);
         this._mixer_Crawling16 = new THREE.AnimationMixer(turtle16);
@@ -978,7 +911,7 @@ class App {
     loader.load(
       "samples/threejs/story/data/turtle/Breakdance.fbx",
       (tt_victory) => {
-        tt_victory.position.set(-1500, 650, 8000);
+        tt_victory.position.set(-6500, 650, 8000);
         tt_victory.rotation.set(0, Math.PI, 0);
         tt_victory.scale.set(5, 5, 5);
         this._scene17.add(tt_victory);
@@ -991,7 +924,7 @@ class App {
     );
 
     loader.load("samples/threejs/story/data/turtle/Angry.fbx", (angry) => {
-      angry.position.set(-1500, 350, -8000);
+      angry.position.set(-6500, 350, -8000);
       angry.scale.set(5, 5, 5);
       this._scene5.add(angry);
       this.mixer_angry = new THREE.AnimationMixer(angry);
@@ -1000,7 +933,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/turtle/Crying.fbx", (cry) => {
-      cry.position.set(0, 300, 2500);
+      cry.position.set(-5000, 300, 2500);
       cry.scale.set(5, 5, 5);
       this._scene15.add(cry);
       this.mixer_cry = new THREE.AnimationMixer(cry);
@@ -1009,7 +942,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/turtle/Talking.fbx", (talk) => {
-      talk.position.set(-1500, 350, -8000);
+      talk.position.set(-6500, 350, -8000);
       talk.scale.set(5, 5, 5);
       this._scene6.add(talk);
       this.mixer_talking = new THREE.AnimationMixer(talk);
@@ -1018,7 +951,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/turtle/Talking.fbx", (talk13) => {
-      talk13.position.set(1500, 300, 2500);
+      talk13.position.set(-1500, 300, 2500);
       talk13.scale.set(5, 5, 5);
       this._scene13.add(talk13);
       this.mixer_talking13 = new THREE.AnimationMixer(talk13);
@@ -1029,7 +962,7 @@ class App {
     });
 
     loader.load("samples/threejs/story/data/turtle/Talking.fbx", (talk14) => {
-      talk14.position.set(1500, 300, 2500);
+      talk14.position.set(-1500, 300, 2500);
       talk14.scale.set(5, 5, 5);
       this._scene14.add(talk14);
       this.mixer_talking14 = new THREE.AnimationMixer(talk14);
@@ -1040,88 +973,93 @@ class App {
     });
   }
 
-  _setupTree() {
+  _setupBg() {
     const loader = new FBXLoader();
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree) => {
-      tree.position.set(3000, 100, 4000);
-      tree.scale.set(5, 5, 5);
-      this._scene2.add(tree);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene2.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree3) => {
-      tree3.position.set(3000, 100, 4000);
-      tree3.scale.set(5, 5, 5);
-      this._scene3.add(tree3);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene3.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree8) => {
-      tree8.position.set(3000, 100, 4000);
-      tree8.scale.set(5, 5, 5);
-      this._scene8.add(tree8);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene4.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree9) => {
-      tree9.position.set(3000, 100, 4000);
-      tree9.scale.set(5, 5, 5);
-      this._scene9.add(tree9);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene5.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree10) => {
-      tree10.position.set(3000, 100, 4000);
-      tree10.scale.set(5, 5, 5);
-      this._scene10.add(tree10);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene6.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree11) => {
-      tree11.position.set(3000, 100, 4000);
-      tree11.scale.set(5, 5, 5);
-      this._scene11.add(tree11);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene7.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree12) => {
-      tree12.position.set(3000, 100, 4000);
-      tree12.scale.set(5, 5, 5);
-      this._scene12.add(tree12);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene8.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree12_5) => {
-      tree12_5.position.set(3000, 100, 4000);
-      tree12_5.scale.set(5, 5, 5);
-      this._scene12_5.add(tree12_5);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene9.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree13) => {
-      tree13.position.set(3000, 100, 4000);
-      tree13.scale.set(5, 5, 5);
-      this._scene13.add(tree13);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene10.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree14) => {
-      tree14.position.set(3000, 100, 4000);
-      tree14.scale.set(5, 5, 5);
-      this._scene14.add(tree14);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene11.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree15) => {
-      tree15.position.set(3000, 100, 4000);
-      tree15.scale.set(5, 5, 5);
-      this._scene15.add(tree15);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene12.add(bg);
     });
-
-    loader.load("samples/threejs/story/data/Tree1.fbx", (tree16) => {
-      tree16.position.set(3000, 100, 4000);
-      tree16.scale.set(5, 5, 5);
-      this._scene16.add(tree16);
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene12_5.add(bg);
     });
-  }
-
-  _setupFence() {
-    // const loader = new FBXLoader();
-    // loader.load("samples/threejs/story/data/Fence.fbx", (fence) => {
-    //   fence.position.set(3000, 5000, 2000);
-    //   fence.scale.set(5, 5, 5);
-    //   this._test.add(fence);
-    // });
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene13.add(bg);
+    });
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene14.add(bg);
+    });
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene15.add(bg);
+    });
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene16.add(bg);
+    });
+    loader.load("samples/threejs/story/data/Cotoon_land.FBX", (bg) => {
+      bg.position.set(-12000, -500, -43000);
+      bg.scale.set(3000, 3000, 3000);
+      this._scene17.add(bg);
+    });
   }
 
   resize() {
@@ -1136,15 +1074,6 @@ class App {
 
   render(time) {
     switch (this.page) {
-      case 0:
-        this.scenetest(this.delta);
-        this._renderer.render(this._test, this._cameratest);
-        this._controlstest.update();
-        this.update(time);
-
-        requestAnimationFrame(this.render.bind(this));
-        break;
-
       case 1:
         this.scene1(this.delta);
         this._renderer.render(this._scene, this._camera);
@@ -1326,11 +1255,6 @@ class App {
     this.delta = this._clock.getDelta();
   }
 
-  scenetest() {
-    this._controls.enabled = true;
-    console.dir(this._cameratest.position);
-  }
-
   scene1() {
     if (!this.finish) {
       this._controls.enabled = false;
@@ -1343,11 +1267,11 @@ class App {
       setTimeout(() => {
         this.playing = true;
         this.finish = false;
-        if (this._camera.position == (-12500, 5000, -300)) {
+        if (this._camera.position == (-17500, 5000, -300)) {
           pass;
         } else {
           this._controls.enabled = false;
-          this._camera.position.set(-12500, 5000, -300);
+          this._camera.position.set(-17500, 5000, -300);
           if (!this.finish) {
             this.finish = true;
             if (this.playing) {
@@ -1365,14 +1289,14 @@ class App {
   }
 
   scene2(delta) {
-    if (this._camera.position == (-4000, 1500, -4500)) {
+    if (this._camera.position == (-9000, 1500, -4500)) {
       pass;
     } else {
       if (this.playing) {
         this._s2_Audio();
         this.playing = false;
       }
-      this._camera.position.set(-4000, 1500, -4500);
+      this._camera.position.set(-9000, 1500, -4500);
       this._mixer_Crawling.update(delta);
       this._mixer_Crawling._root.position.z += 20;
     }
@@ -1470,8 +1394,8 @@ class App {
         this.playing = false;
       }
     }
-    if (this._camera.position != (-6500, 4000, 0)) {
-      this._camera.position.set(-6500, 4000, 0);
+    if (this._camera.position != (-11500, 4000, 0)) {
+      this._camera.position.set(-11500, 4000, 0);
       if (this._mixer_jump3) {
         this._mixer_jump3.update(delta);
         setTimeout(() => {
@@ -1502,8 +1426,8 @@ class App {
         this.page = 10;
       }, 4000);
     }
-    if (this._camera.position != (-4000, 4000, 0)) {
-      this._camera.position.set(-4000, 4000, 0);
+    if (this._camera.position != (-9000, 4000, 0)) {
+      this._camera.position.set(-9000, 4000, 0);
       if (this._mixer_jump9) {
         this._mixer_jump9.update(delta);
         this._mixer_jump9._root.position.z += 25;
@@ -1549,8 +1473,8 @@ class App {
         this.page = 12;
       }, 7500);
     }
-    if (this._camera.position != (-4710, 1500, 3170)) {
-      this._camera.position.set(-4710, 1500, 3170);
+    if (this._camera.position != (-9710, 1500, 3170)) {
+      this._camera.position.set(-9710, 1500, 3170);
       this._camera.rotation.set(0, Math.PI / -2, 0);
       if (this._mixer_laydown11) {
         this._mixer_laydown11.update(delta);
@@ -1567,14 +1491,14 @@ class App {
         this.playing = false;
       }
     }
-    if (this._camera.position.set(-4000, 1850, 4000)) {
-      this._camera.position.set(-4000, 1850, 4000);
+    if (this._camera.position.set(-9000, 1850, 4000)) {
+      this._camera.position.set(-9000, 1850, 4000);
       this._camera.rotation.set(0, Math.PI / -2, 0);
       if (this._mixer_Crawling12) {
         if (this._mixer_Crawling12._root.position.z > 3700) {
           this._mixer_Crawling12._root.rotation.set(0, Math.PI / 2, 0);
           this._mixer_Crawling12._root.position.x += 5;
-          if (this._mixer_Crawling12._root.position.x >= 0) {
+          if (this._mixer_Crawling12._root.position.x >= -5000) {
             this.page = 12.5;
           }
         } else {
@@ -1609,8 +1533,8 @@ class App {
         this.page = 14;
       }, 4500);
     }
-    if (this._camera.position != (-4710, 1500, 3170)) {
-      this._camera.position.set(-4710, 1500, 3170);
+    if (this._camera.position != (-9710, 1500, 3170)) {
+      this._camera.position.set(-9710, 1500, 3170);
       this._camera.rotation.set(0, Math.PI / -2, 0);
       if (this._mixer_laydown13) {
         this._mixer_laydown13.update(delta);
@@ -1633,8 +1557,8 @@ class App {
         this.page = 15;
       }, 5500);
     }
-    if (this._camera.position != (-4710, 1500, 3170)) {
-      this._camera.position.set(-4710, 1500, 3170);
+    if (this._camera.position != (-9710, 1500, 3170)) {
+      this._camera.position.set(-9710, 1500, 3170);
       this._camera.rotation.set(0, Math.PI / -2, 0);
       if (this.mixer_talking14) {
         this.mixer_talking14.update(delta);
@@ -1654,8 +1578,8 @@ class App {
         this.playing = false;
       }
     }
-    if (this._camera.position != (0, 1500, 12000)) {
-      this._camera.position.set(0, 1500, 12000);
+    if (this._camera.position != (-5000, 1500, 12000)) {
+      this._camera.position.set(-5000, 1500, 12000);
       this._camera.rotation.set(0, 0, 0);
       if (this._mixer_jump15) {
         this._mixer_jump15.update(delta);
@@ -1711,8 +1635,8 @@ class App {
         this.playing = false;
       }
     }
-    if (this._camera.position != (-1500, 1650, 5000)) {
-      this._camera.position.set(-1500, 1650, 5000);
+    if (this._camera.position != (-6500, 1650, 5000)) {
+      this._camera.position.set(-6500, 1650, 5000);
       this._camera.rotation.set(0, Math.PI, 0);
     }
     if (this._mixer_victory) {
