@@ -150,12 +150,16 @@
               e.preventDefault();
               return;
             } // page 1은 책표지  2페이지부터 책을 펼침
+<<<<<<< HEAD
           }
+=======
+          } 
+>>>>>>> 1621b78363e9969dc41ea767d4a32f6cc36cfe50
           // 2초후 스토리 페이지로 전환
           setTimeout(function () {
             location.href = "story";
-          }, 2000);
-
+          }, 2000); 
+          
           updateDepth(book, page);
 
           if (page >= 2) $(".threejs-book .p2").addClass("fixed");
