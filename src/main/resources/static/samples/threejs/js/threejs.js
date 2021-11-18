@@ -132,48 +132,26 @@
 
       return;
     }
-
+    //플립북 시작
     flipbook.turn({
-      elevation: 50,
-      acceleration: !isChrome(),
       autoCenter: true,
       duration: 1500,
-      pages: 112,
+      pages: 10,
       width: 960,
       height: 600,
       when: {
-        turning: function (e, page, view) {
+        turning: function (e, page) {
           var book = $(this),
             currentPage = book.turn("page"),
             pages = book.turn("pages");
-
           if (currentPage > 3 && currentPage < pages - 3) {
             if (page == 1) {
               book.turn("page", 2).turn("stop").turn("page", page);
               e.preventDefault();
               return;
-            } else if (page == pages) {
-              book
-                .turn("page", pages - 1)
-                .turn("stop")
-                .turn("page", page);
-              e.preventDefault();
-              return;
-            }
-          } else if (page > 3 && page < pages - 3) {
-            if (currentPage == 1) {
-              book.turn("page", 2).turn("stop").turn("page", page);
-              e.preventDefault();
-              return;
-            } else if (currentPage == pages) {
-              book
-                .turn("page", pages - 1)
-                .turn("stop")
-                .turn("page", page);
-              e.preventDefault();
-              return;
-            }
+            } // page 1은 책표지  2페이지부터 책을 펼침
           }
+          // 2초후 스토리 페이지로 전환
           setTimeout(function () {
             location.href = "story";
           }, 2000);
@@ -217,8 +195,8 @@
         sample.previewSrc = samplePath + "pics/preview.jpg";
         sample.tableContents = 5;
         sample.shareLink = "http://" + location.host + "/#" + samplePath;
-        sample.shareText =
-          "A book about Steve Jobs in HTML5 using the new turn.js via @turnjs";
+        // sample.shareText =
+        //   "A book about Steve Jobs in HTML5 using the new turn.js via @turnjs";
 
         if (!sample.flipbook) {
           var bookClass = Modernizr.csstransforms
@@ -230,9 +208,9 @@
               '<div depth="5" class="hard"> <div class="side"></div> </div>' +
                 '<div depth="5" class="hard front-side"> <div class="depth"></div> </div>' +
                 '<div class="own-size"></div>' +
-                '<div class="own-size even"></div>' +
-                '<div class="hard fixed back-side p111"> <div class="depth"></div> </div>' +
-                '<div class="hard p112"></div>'
+                '<div class="own-size even"></div>'
+              // '<div class="hard fixed back-side p111"> <div class="depth"></div> </div>' +
+              // '<div class="hard p112"></div>'
             )
             .bind($.isTouch ? "touchend" : "click", zoomHandle)
             .appendTo($("#book-zoom"));

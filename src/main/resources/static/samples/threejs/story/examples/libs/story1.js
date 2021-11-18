@@ -20,6 +20,7 @@ class App {
 
     this._renderer = renderer;
 
+    const test = new THREE.Scene();
     const scene = new THREE.Scene();
     const scene2 = new THREE.Scene();
     const scene3 = new THREE.Scene();
@@ -39,6 +40,7 @@ class App {
     const scene16 = new THREE.Scene();
     const scene17 = new THREE.Scene();
 
+    this._test = test;
     this._scene = scene;
     this._scene2 = scene2;
     this._scene3 = scene3;
@@ -72,6 +74,7 @@ class App {
     this.finish13 = false;
     this.finish14 = false;
     this.finish15 = false;
+    this.finish15_2 = false;
     this.finish16 = false;
     this.finish17 = false;
     this.stt = true;
@@ -87,6 +90,8 @@ class App {
     this._setupTurtle();
     this._setupFloor();
     this._setupControls();
+    this._setupFloor();
+    this._setupFence();
 
     window.onresize = this.resize.bind(this);
     this.resize();
@@ -97,18 +102,32 @@ class App {
   _setupControls() {
     this._controls = new OrbitControls(this._camera, this._divContainer);
     this._controls.update();
+    this._controlstest = new OrbitControls(
+      this._cameratest,
+      this._divContainer
+    );
+    this._controlstest.update();
   }
 
   _setupCamera() {
+    const cameratest = new THREE.PerspectiveCamera(
+      80,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100000
+    );
     const camera = new THREE.PerspectiveCamera(
       80,
       window.innerWidth / window.innerHeight,
       0.1,
       100000
     );
-    camera.position.set(-9000, 4000, 3);
-    this._camera = camera;
-
+    const camera3 = new THREE.PerspectiveCamera(
+      60,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100000
+    );
     const camera4 = new THREE.PerspectiveCamera(
       60,
       window.innerWidth / window.innerHeight,
@@ -133,6 +152,12 @@ class App {
       0.1,
       100000
     );
+    const camera10 = new THREE.PerspectiveCamera(
+      60,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100000
+    );
     const camera12_5 = new THREE.PerspectiveCamera(
       80,
       window.innerWidth / window.innerHeight,
@@ -146,25 +171,34 @@ class App {
       100000
     );
 
-    camera4.position.set(1800, 1300, -4500);
+    cameratest.position.set(-4000, 1500, -4500);
+    camera.position.set(-9000, 4000, 3);
+    camera3.position.set(1800, 1300, 3000);
+    camera4.position.set(1000, 1300, -4500);
     camera5.position.set(700, 2200, 5500);
     camera6.position.set(-1000, 1300, -3000);
     camera7.position.set(1800, 1300, -3000);
+    camera10.position.set(1800, 1300, 6700);
     camera12_5.position.set(-2000, 1850, 4500);
     camera12_5.rotation.set(0, Math.PI / -2, 0);
     camera16.position.set(-2000, 1850, 4500);
     camera16.rotation.set(0, Math.PI / -2, 0);
 
+    this._cameratest = cameratest;
+    this._camera = camera;
+    this._camera3 = camera3;
     this._camera4 = camera4;
     this._camera5 = camera5;
     this._camera6 = camera6;
     this._camera7 = camera7;
+    this._camera10 = camera10;
     this._camera12_5 = camera12_5;
     this._camera16 = camera16;
   }
 
   _setupLight() {
     const color = 0xffffff;
+    const lighttest = new THREE.AmbientLight(color);
     const light = new THREE.AmbientLight(color);
     const light2 = new THREE.AmbientLight(color);
     const light3 = new THREE.AmbientLight(color);
@@ -184,6 +218,7 @@ class App {
     const light16 = new THREE.AmbientLight(color);
     const light17 = new THREE.AmbientLight(color);
 
+    this._test.add(lighttest);
     this._scene.add(light);
     this._scene2.add(light2);
     this._scene3.add(light3);
@@ -202,6 +237,23 @@ class App {
     this._scene15.add(light15);
     this._scene16.add(light16);
     this._scene17.add(light17);
+  }
+
+  _start_Audio() {
+    const listener = new THREE.AudioListener();
+    this._camera.add(listener);
+    const start_sound = new THREE.Audio(listener);
+    const start_audioLoader = new THREE.AudioLoader();
+
+    start_audioLoader.load(
+      "samples/threejs/story/data/tts/start.ogg",
+      function (buffer) {
+        start_sound.setBuffer(buffer);
+        start_sound.setLoop(false);
+        start_sound.setVolume(1);
+        start_sound.play();
+      }
+    );
   }
 
   _s1_Audio() {
@@ -459,6 +511,23 @@ class App {
     );
   }
 
+  _s15_2_Audio() {
+    const listener = new THREE.AudioListener();
+    this._camera.add(listener);
+    const s15_2_sound = new THREE.Audio(listener);
+    const s15_2_audioLoader = new THREE.AudioLoader();
+
+    s15_2_audioLoader.load(
+      "samples/threejs/story/data/tts/15_2.ogg",
+      function (buffer) {
+        s15_2_sound.setBuffer(buffer);
+        s15_2_sound.setLoop(false);
+        s15_2_sound.setVolume(1);
+        s15_2_sound.play();
+      }
+    );
+  }
+
   _s16_Audio() {
     const listener = new THREE.AudioListener();
     this._camera.add(listener);
@@ -526,7 +595,7 @@ class App {
       this._scene.add(mesh);
     });
   }
-  
+
   _setupText() {
     const loader = new FontLoader();
     loader.load("samples/threejs/story/data/Do_Regular.json", (font) => {
@@ -556,7 +625,7 @@ class App {
       const mesh = new THREE.Mesh(geometry, material);
 
       mesh.position.set(2000, 1850, -1500);
-      mesh.rotation.y = Math.PI / -2;
+      mesh.rotation.y = Math.PI / -4;
 
       this._scene12_5.add(mesh);
     });
@@ -587,8 +656,8 @@ class App {
 
       const mesh = new THREE.Mesh(geometry, material);
 
-      mesh.position.set(2000, 1850, 5500);
-      mesh.rotation.y = Math.PI / -2;
+      mesh.position.set(4000, 1850, 5500);
+      mesh.rotation.y = Math.PI / -1.4;
 
       this._scene12_5.add(mesh);
     });
@@ -771,12 +840,11 @@ class App {
       }
     );
 
-    loader.load("samples/threejs/story/data/rabbit/Walk.fbx", (rb_victory) => {
-      rb_victory.position.set(1500, 300, 3800);
-      rb_victory.rotation.y = Math.PI / -2;
-      // this._scene2.add(rb_victory);
-      this._mixer5 = new THREE.AnimationMixer(rb_victory);
-      const rb_victory_action = this._mixer5.clipAction(
+    loader.load("samples/threejs/story/data/rabbit/laugh.fbx", (rb_victory) => {
+      rb_victory.position.set(1500, 300, 380000);
+      this._scene15.add(rb_victory);
+      this._mixer_rb_victory = new THREE.AnimationMixer(rb_victory);
+      const rb_victory_action = this._mixer_rb_victory.clipAction(
         rb_victory.animations[0]
       );
       rb_victory_action.play();
@@ -803,7 +871,7 @@ class App {
 
     loader.load("samples/threejs/story/data/rabbit/Talk.fbx", (talk14) => {
       talk14.position.set(1500, 300, 5000);
-      talk14.rotation.y = Math.PI / -2;
+      talk14.rotation.y = Math.PI;
       this._scene14.add(talk14);
       this.mixer_talk14 = new THREE.AnimationMixer(talk14);
       const rb_talk_action14 = this.mixer_talk14.clipAction(
@@ -880,7 +948,7 @@ class App {
     loader.load(
       "samples/threejs/story/data/turtle/Crawling.fbx",
       (turtle12_5) => {
-        turtle12_5.position.set(500, 650, 3500);
+        turtle12_5.position.set(0, 650, 3500);
         turtle12_5.rotation.set(0, Math.PI / 2, 0);
         turtle12_5.scale.set(5, 5, 5);
         this._scene12_5.add(turtle12_5);
@@ -888,6 +956,7 @@ class App {
         const tt_craw_action12_5 = this._mixer_Crawling12_5.clipAction(
           turtle12_5.animations[0]
         );
+        this._mixer_Crawling12_5.timeScale = 0.001;
         tt_craw_action12_5.play();
       }
     );
@@ -930,15 +999,13 @@ class App {
       tt_action_angry.play();
     });
 
-    loader.load("samples/threejs/story/data/turtle/Angry.fbx", (angry15) => {
-      angry15.position.set(0, 300, 2500);
-      angry15.scale.set(5, 5, 5);
-      this._scene15.add(angry15);
-      this.mixer_angry15 = new THREE.AnimationMixer(angry15);
-      const tt_action_angry15 = this.mixer_angry15.clipAction(
-        angry15.animations[0]
-      );
-      tt_action_angry15.play();
+    loader.load("samples/threejs/story/data/turtle/Crying.fbx", (cry) => {
+      cry.position.set(0, 300, 2500);
+      cry.scale.set(5, 5, 5);
+      this._scene15.add(cry);
+      this.mixer_cry = new THREE.AnimationMixer(cry);
+      const tt_action_cry = this.mixer_cry.clipAction(cry.animations[0]);
+      tt_action_cry.play();
     });
 
     loader.load("samples/threejs/story/data/turtle/Talking.fbx", (talk) => {
@@ -1048,6 +1115,15 @@ class App {
     });
   }
 
+  _setupFence() {
+    // const loader = new FBXLoader();
+    // loader.load("samples/threejs/story/data/Fence.fbx", (fence) => {
+    //   fence.position.set(3000, 5000, 2000);
+    //   fence.scale.set(5, 5, 5);
+    //   this._test.add(fence);
+    // });
+  }
+
   resize() {
     const width = this._divContainer.clientWidth;
     const height = this._divContainer.clientHeight;
@@ -1060,6 +1136,15 @@ class App {
 
   render(time) {
     switch (this.page) {
+      case 0:
+        this.scenetest(this.delta);
+        this._renderer.render(this._test, this._cameratest);
+        this._controlstest.update();
+        this.update(time);
+
+        requestAnimationFrame(this.render.bind(this));
+        break;
+
       case 1:
         this.scene1(this.delta);
         this._renderer.render(this._scene, this._camera);
@@ -1078,7 +1163,7 @@ class App {
 
       case 3:
         this.scene3(this.delta);
-        this._renderer.render(this._scene3, this._camera);
+        this._renderer.render(this._scene3, this._camera3);
         this._controls.update();
         this.update(time);
 
@@ -1138,7 +1223,7 @@ class App {
 
       case 10:
         this.scene10(this.delta);
-        this._renderer.render(this._scene10, this._camera);
+        this._renderer.render(this._scene10, this._camera10);
         this._controls.update();
         this.update(time);
         requestAnimationFrame(this.render.bind(this));
@@ -1210,7 +1295,9 @@ class App {
         this._controls.update();
         this.update(time);
         requestAnimationFrame(this.render.bind(this));
-
+        setTimeout(() => {
+          location.href = "home";
+        }, 10000);
         break;
 
       case 16:
@@ -1226,6 +1313,9 @@ class App {
         this._renderer.render(this._scene17, this._camera);
         this.update(time);
         requestAnimationFrame(this.render.bind(this));
+        setTimeout(() => {
+          location.href = "home";
+        }, 8000);
 
         break;
     }
@@ -1236,23 +1326,41 @@ class App {
     this.delta = this._clock.getDelta();
   }
 
+  scenetest() {
+    this._controls.enabled = true;
+    console.dir(this._cameratest.position);
+  }
+
   scene1() {
-    if (this._camera.position == (-12500, 5000, -300)) {
-      pass;
-    } else {
+    if (!this.finish) {
       this._controls.enabled = false;
-      this._camera.position.set(-12500, 5000, -300);
-      if (!this.finish) {
-        this.finish = true;
-        if (this.playing) {
-          this._s1_Audio();
-          this.playing = false;
-        }
-        setTimeout(() => {
-          this.playing = true;
-          this.page = 2;
-        }, 4000);
+      this._camera.position.set(-0, 5000, -300);
+      this.finish = true;
+      if (this.playing) {
+        this._start_Audio();
+        this.playing = false;
       }
+      setTimeout(() => {
+        this.playing = true;
+        this.finish = false;
+        if (this._camera.position == (-12500, 5000, -300)) {
+          pass;
+        } else {
+          this._controls.enabled = false;
+          this._camera.position.set(-12500, 5000, -300);
+          if (!this.finish) {
+            this.finish = true;
+            if (this.playing) {
+              this._s1_Audio();
+              this.playing = false;
+            }
+            setTimeout(() => {
+              this.playing = true;
+              this.page = 2;
+            }, 3500);
+          }
+        }
+      }, 8000);
     }
   }
 
@@ -1276,18 +1384,12 @@ class App {
   }
 
   scene3(delta) {
-    if (this._camera.position == (980, 2200, 3000)) {
-      pass;
-    } else {
-      if (this.playing) {
-        this._s3_Audio();
-        this.playing = false;
-      }
-      this._camera.position.set(1280, 1000, 2000);
-      // this._camera.rotation.y = Math.PI / -2;
-      this._mixer_jump.update(delta);
-      this._mixer_jump._root.position.z += 30;
+    if (this.playing) {
+      this._s3_Audio();
+      this.playing = false;
     }
+    this._mixer_jump.update(delta);
+    this._mixer_jump._root.position.z += 30;
     if (this._mixer_jump._root.position.z > 2000) {
       this._mixer_jump._root.position.z = 800000;
       this.playing = true;
@@ -1299,12 +1401,12 @@ class App {
     if (this.playing) {
       this._s4_Audio();
       this.playing = false;
+      setTimeout(() => {
+        this.page = 5;
+      }, 6000);
     }
     if (this.mixer_jump2) {
       this.mixer_jump2.update(delta);
-      setTimeout(() => {
-        this.page = 5;
-      }, 5000);
     }
   }
 
@@ -1316,12 +1418,12 @@ class App {
         this._s5_Audio();
         this.playing = false;
       }
-    }
-    if (this.mixer_angry) {
-      this.mixer_angry.update(delta);
       setTimeout(() => {
         this.page = 6;
       }, 5000);
+    }
+    if (this.mixer_angry) {
+      this.mixer_angry.update(delta);
     }
   }
 
@@ -1333,12 +1435,12 @@ class App {
         this._s6_Audio();
         this.playing = false;
       }
+      setTimeout(() => {
+        this.page = 7;
+      }, 5500);
     }
     if (this.mixer_talking) {
       this.mixer_talking.update(delta);
-      setTimeout(() => {
-        this.page = 7;
-      }, 5000);
     }
   }
 
@@ -1350,12 +1452,12 @@ class App {
         this._s7_Audio();
         this.playing = false;
       }
-    }
-    if (this.mixer_talk) {
-      this.mixer_talk.update(delta);
       setTimeout(() => {
         this.page = 8;
       }, 5000);
+    }
+    if (this.mixer_talk) {
+      this.mixer_talk.update(delta);
     }
   }
 
@@ -1368,25 +1470,23 @@ class App {
         this.playing = false;
       }
     }
-    if (this._camera.position != (-12500, 7000, -300)) {
-      this._camera.position.set(-12500, 7000, -300);
+    if (this._camera.position != (-6500, 4000, 0)) {
+      this._camera.position.set(-6500, 4000, 0);
       if (this._mixer_jump3) {
         this._mixer_jump3.update(delta);
-
         setTimeout(() => {
           this._mixer_jump3._root.position.z += 20;
-        }, 2000);
-
+        }, 2500);
         if (this._mixer_jump3._root.position.z >= -3000) {
           this.page = 9;
         }
       }
       if (this._mixer_Crawling2) {
         this._mixer_Crawling2.update(delta);
-        setTimeout(() => {
-          this._mixer_Crawling2._root.position.z += 3;
-        }, 2000);
       }
+      setTimeout(() => {
+        this._mixer_Crawling2._root.position.z += 3;
+      }, 2500);
     }
   }
 
@@ -1398,9 +1498,12 @@ class App {
         this._s9_Audio();
         this.playing = false;
       }
+      setTimeout(() => {
+        this.page = 10;
+      }, 4000);
     }
-    if (this._camera.position != (-5000, 4000, 0)) {
-      this._camera.position.set(-5000, 4000, 0);
+    if (this._camera.position != (-4000, 4000, 0)) {
+      this._camera.position.set(-4000, 4000, 0);
       if (this._mixer_jump9) {
         this._mixer_jump9.update(delta);
         this._mixer_jump9._root.position.z += 25;
@@ -1410,9 +1513,6 @@ class App {
         this._mixer_Crawling9._root.position.z += 1;
       }
     }
-    setTimeout(() => {
-      this.page = 10;
-    }, 4000);
   }
 
   scene10(delta) {
@@ -1423,10 +1523,11 @@ class App {
         this._s10_Audio();
         this.playing = false;
       }
+      setTimeout(() => {
+        this.page = 11;
+      }, 5000);
     }
-    if (this._camera.position != (1250, 2000, 6700)) {
-      this._camera.position.set(1250, 2000, 6700);
-      this._camera.rotation.set(0, 0, 0);
+    if (this.mixer_talk10) {
       this.mixer_talk10._root.position.z = 3500;
       this.mixer_talk10.update(delta);
     }
@@ -1434,9 +1535,6 @@ class App {
       this._mixer_Crawling10.update(delta);
       this._mixer_Crawling10._root.position.z += 3;
     }
-    setTimeout(() => {
-      this.page = 11;
-    }, 5000);
   }
 
   scene11(delta) {
@@ -1447,6 +1545,9 @@ class App {
         this._s11_Audio();
         this.playing = false;
       }
+      setTimeout(() => {
+        this.page = 12;
+      }, 7500);
     }
     if (this._camera.position != (-4710, 1500, 3170)) {
       this._camera.position.set(-4710, 1500, 3170);
@@ -1455,9 +1556,6 @@ class App {
         this._mixer_laydown11.update(delta);
       }
     }
-    setTimeout(() => {
-      this.page = 12;
-    }, 8000);
   }
 
   scene12(delta) {
@@ -1469,8 +1567,8 @@ class App {
         this.playing = false;
       }
     }
-    if (this._camera.position.set(-2000, 1850, 4500)) {
-      this._camera.position.set(-2000, 1850, 4500);
+    if (this._camera.position.set(-4000, 1850, 4000)) {
+      this._camera.position.set(-4000, 1850, 4000);
       this._camera.rotation.set(0, Math.PI / -2, 0);
       if (this._mixer_Crawling12) {
         if (this._mixer_Crawling12._root.position.z > 3700) {
@@ -1507,6 +1605,9 @@ class App {
         this._s13_Audio();
         this.playing = false;
       }
+      setTimeout(() => {
+        this.page = 14;
+      }, 4500);
     }
     if (this._camera.position != (-4710, 1500, 3170)) {
       this._camera.position.set(-4710, 1500, 3170);
@@ -1518,9 +1619,6 @@ class App {
         this.mixer_talking13.update(delta);
       }
     }
-    setTimeout(() => {
-      this.page = 14;
-    }, 5000);
   }
 
   scene14(delta) {
@@ -1531,6 +1629,9 @@ class App {
         this._s14_Audio();
         this.playing = false;
       }
+      setTimeout(() => {
+        this.page = 15;
+      }, 5500);
     }
     if (this._camera.position != (-4710, 1500, 3170)) {
       this._camera.position.set(-4710, 1500, 3170);
@@ -1541,9 +1642,6 @@ class App {
       if (this.mixer_talk14) {
         this.mixer_talk14.update(delta);
       }
-      setTimeout(() => {
-        this.page = 15;
-      }, 6000);
     }
   }
 
@@ -1556,15 +1654,28 @@ class App {
         this.playing = false;
       }
     }
-    if (this._camera.position != (0, 1500, 0)) {
-      this._camera.position.set(0, 1500, 0);
-      this._camera.rotation.set(0, Math.PI, 0);
+    if (this._camera.position != (0, 1500, 12000)) {
+      this._camera.position.set(0, 1500, 12000);
+      this._camera.rotation.set(0, 0, 0);
       if (this._mixer_jump15) {
         this._mixer_jump15.update(delta);
         this._mixer_jump15._root.position.z += 20;
+        if (this._mixer_jump15._root.position.z >= 9000) {
+          this._mixer_jump15._root.position.z = 380000;
+          this._mixer_rb_victory.update(delta);
+          this._mixer_rb_victory._root.position.z = 9000;
+          if (!this.finish15_2) {
+            this.playing = true;
+            this.finish15_2 = true;
+            if (this.playing) {
+              this._s15_2_Audio();
+              this.playing = false;
+            }
+          }
+        }
       }
-      if (this.mixer_angry15) {
-        this.mixer_angry15.update(delta);
+      if (this.mixer_cry) {
+        this.mixer_cry.update(delta);
       }
     }
   }
