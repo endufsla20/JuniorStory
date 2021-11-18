@@ -595,10 +595,7 @@ class App {
       this._scene.add(mesh);
     });
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> 1621b78363e9969dc41ea767d4a32f6cc36cfe50
   _setupText() {
     const loader = new FontLoader();
     loader.load("samples/threejs/story/data/Do_Regular.json", (font) => {
