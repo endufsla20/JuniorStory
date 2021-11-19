@@ -583,7 +583,7 @@ class App {
     const loader = new FontLoader();
     loader.load("samples/threejs/story/data/Do_Regular.json", (font) => {
       const geometry = new TextGeometry(
-        "깨운다",
+        "일어나!",
 
         {
           font: font,
@@ -605,15 +605,15 @@ class App {
 
       const mesh = new THREE.Mesh(geometry, material);
 
-      mesh.position.set(-3000, 850, -250);
-      mesh.rotation.y = Math.PI / -4;
+      mesh.position.set(-2000, 850, -1000);
+      mesh.rotation.y = Math.PI / -3;
 
       this._scene12_5.add(mesh);
     });
 
     loader.load("samples/threejs/story/data/Do_Regular.json", (font) => {
       const geometry = new TextGeometry(
-        "무시한다",
+        "잘자~",
 
         {
           font: font,
@@ -636,7 +636,7 @@ class App {
       const mesh = new THREE.Mesh(geometry, material);
 
       mesh.position.set(-1000, 850, 5750);
-      mesh.rotation.y = Math.PI / -1.4;
+      mesh.rotation.y = Math.PI / -1.5;
 
       this._scene12_5.add(mesh);
     });
@@ -1185,10 +1185,10 @@ class App {
           new STT(this);
 
           this.call = function (msg) {
-            if (msg == "깨운다") {
+            if (msg == "일어나") {
               this.stt = false;
               this.page = 13;
-            } else if (msg == "무시한다") {
+            } else if (msg == "잘 자") {
               this.stt = false;
               this.page = 16;
             }
@@ -1270,11 +1270,11 @@ class App {
       setTimeout(() => {
         this.playing = true;
         this.finish = false;
-        if (this._camera.position == (-17500, 5000, -300)) {
+        if (this._camera.position == (-12500, 5000, -300)) {
           pass;
         } else {
           this._controls.enabled = false;
-          this._camera.position.set(-17500, 5000, -300);
+          this._camera.position.set(-12500, 5000, -300);
           if (!this.finish) {
             this.finish = true;
             if (this.playing) {
